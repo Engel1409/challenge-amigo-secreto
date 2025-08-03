@@ -4,30 +4,44 @@ const amigos = [];
 
 function agregarAmigo(){
     const input = document.getElementById("amigo");
-    const amigo =input.value.trim();
-    console.log (amigo)
+    const nombre =input.value.trim();
 
-    if (amigo === ""){
+
+    if (!nombre){
         alert ("Ingrese un nombre valido");
         return;
     }
 
-    if (amigos.includes(amigo)){
-        alert ("Nombre ya fue ingresado");
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+        alert("El nombre solo debe contener letras");
         return;
     }
-    amigos.push(amigo);
+
+    const yaExiste = amigos.some(a => a.toLowerCase() === nombre.toLowerCase());
+    if (yaExiste) {
+        alert("El nombre ya fue ingresado");
+        return;
+    }
+
+    amigos.push(nombre);
     input.value ="";
 
     MostrarAmigos();
 }
+
+function detectarEnter(event) {
+    if (event.key === "Enter") {
+        agregarAmigo();
+    }
+}
+
 function MostrarAmigos() {
     const lista = document.getElementById ("listaAmigos");
     lista.innerHTML ="";
 
-    amigos.forEach(amigo => {
+    amigos.forEach(nombre => {
         const li = document.createElement("li");
-        li.textContent= amigo;
+        li.textContent= nombre;
         lista.appendChild(li);
     })
     
