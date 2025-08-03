@@ -55,5 +55,17 @@ function sortearAmigo(){
 
     const indice = Math.floor(Math.random()*amigos.length);
     const elegido = amigos[indice];
-    document.getElementById("resultado").textContent=`el amigo secreto es: 🎁 ${elegido} 🎁`;
+
+    // muestra resultado en pantalla
+    document.getElementById("resultado");
+    resultado.textContent=`el amigo secreto es: 🎁 ${elegido} 🎁`;
+
+    // Esperar 5 segundos y luego reiniciar todo
+    setTimeout(() => {
+        amigos.length = 0; // Vaciar el array
+        resultado.textContent = ""; // Limpiar resultado
+        document.getElementById("resultado").value = ""; // Limpiar input
+        document.getElementById("listaAmigos").innerHTML = ""; // Limpiar lista del DOM si la tienes
+        document.getAnimations("#li").innerHTML=""; // limpiar li
+    }, 5000);
 }
