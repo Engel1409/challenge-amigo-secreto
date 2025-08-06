@@ -62,7 +62,7 @@ function MostrarAmigos() {
 
     amigos.forEach(nombre => {
         const li = document.createElement("li");
-        li.textContent= nombre;
+        li.textContent= nombre.toUpperCase();
         lista.appendChild(li);
     })
     
